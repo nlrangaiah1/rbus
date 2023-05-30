@@ -1035,6 +1035,7 @@ rtConnection_SendRequestInternal(rtConnection con, uint8_t const* pReq, uint32_t
 
     rtList_PushFront(con->pending_requests_list, (void*)&queue_entry, &listItem);
     err = rtConnection_SendInternal(con, p, n, topic, con->inbox_name, rtMessageFlags_Request | flags, sequence_number, 0, 0, 0);
+    RBUSLOG_DEBUG("%s ,Req:%s ,tid:%d ,topic:%s ,sequence_number:%d ,err:%d ,con->read_tid:%d ,con->send_buffer:%s ,con->recv_buffer:%s ,application_name=%s",__FUNCTION__,pReq,tid,topic,sequence_number,err,con->read_tid,con->send_buffer,con->recv_buffer,con->application_name);  
     if (err != RT_OK)
     {
       ret = err;
